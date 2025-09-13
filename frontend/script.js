@@ -14,7 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const signalValues = signalInput.value.split(',').map(Number);
+        // Regex to do not consider any number after last comma
+        const raw = signalInput.value.replace(/,+$/g, ''); 
+        const signalValues = raw.split(',').filter(v => v !== '').map(Number);
 
         if (!isValidSignal(signalValues)) {
             alert('Por favor, insira números válidos separados por vírgula');

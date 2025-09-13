@@ -36,26 +36,25 @@ async def analyze_signal(request: SignalRequest):
     min_value = float(np.min(signal))
     max_value = float(np.max(signal))
     
-        # 🚨 Casos especiais
-    # 1) Sinal com apenas um valor
+    # 1) Signal with single value
     if len(signal) == 1:
         trend = "estável"
-    # 2) Todos os valores são iguais
+    # 2) Signal with all different values
     elif np.all(signal == signal[0]):
         trend = "estável"
     else:
-        # Divide em duas metades para análise de tendência
+        # Split signal to trend
         first_half = signal[:len(signal)//2]
         second_half = signal[len(signal)//2:]
 
         first_mean = np.mean(first_half)
         second_mean = np.mean(second_half)
 
-        # Verifica variação relativa
+        # Check variation
         if np.mean(signal) == 0:
-            # Se a média global for zero mas não são todos iguais, tendência depende do início/fim
+            # If the global average is zero, but not all are the same, the trend depends on the start/end
             trend = "crescente" if second_mean > first_mean else "decrescente"
-        elif abs(second_mean - first_mean) < 0.1 * abs(np.mean(signal)):  # tolerância de 10%
+        elif abs(second_mean - first_mean) < 0.1 * abs(np.mean(signal)):  # threshold 10%
             trend = "estável"
         elif second_mean > first_mean:
             trend = "crescente"
