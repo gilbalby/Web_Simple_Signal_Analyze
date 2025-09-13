@@ -18,26 +18,20 @@ Backend com API RESTful.
 
 Interface de frontend simples e responsiva.
 
-Estrutura do Projeto
-(Esta seção parece estar vazia no original)
-
 Configuração
 Configuração do Backend
 Navegue até o diretório do backend:
 
-Bash
-
 cd backend
+
 Instale as dependências do Python:
 
-Bash
-
 pip install -r requirements.txt
+
 Inicie o servidor FastAPI:
 
-Bash
-
 uvicorn main:app --reload
+
 A API estará disponível em http://localhost:8000.
 
 Configuração do Frontend
@@ -69,9 +63,7 @@ JSON
 A tendência pode ser uma das seguintes:
 
 "crescente"
-
 "decrescente"
-
 "estável"
 
 Uso
